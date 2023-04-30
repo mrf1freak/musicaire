@@ -4,12 +4,18 @@ import { useState } from "react";
 import { useDebouncedValue } from "@mantine/hooks";
 
 const Home: NextPage = () => {
+  type Track = (typeof tracks)[number];
+
   const [query, setQuery] = useState("");
+  const [selectedTracks, setSelectedTracks] = useState<Track[]>([]);
   const [debouncedQuery] = useDebouncedValue(query, 750);
   const { data: tracks = [] } = api.spotify.searchTracks.useQuery(
     { query: debouncedQuery },
     { enabled: !!debouncedQuery }
   );
+  function addTrack(track: Track) {
+    setSelectedTracks([...selectedTracks, track]);
+  }
   return (
     <div>
       <input
@@ -17,9 +23,21 @@ const Home: NextPage = () => {
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search..."
       />
-      {tracks.map(({ id, name }) => (
-        <div key={id}>{name}</div>
+      {tracks.map((track) => (
+        <button
+          className="block"
+          onClick={() => addTrack(track)}
+          key={track.id}
+        >
+          {track.name}
+        </button>
       ))}
+      <div>
+        Selected Tracks
+        {selectedTracks.map((track) => (
+          <div key={track.id}>{track.name}</div>
+        ))}
+      </div>
     </div>
   );
 };
