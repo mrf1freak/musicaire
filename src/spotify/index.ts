@@ -27,7 +27,13 @@ api.interceptors.response.use(
 export async function searchTracks(query: string) {
   const ResponseSchema = z.object({
     tracks: z.object({
-      items: z.array(z.object({ id: z.string(), name: z.string() })),
+      items: z.array(
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          artists: z.array(z.object({ name: z.string() })),
+        })
+      ),
     }),
   });
 

@@ -9,13 +9,17 @@ const Home: NextPage = () => {
   const [query, setQuery] = useState("");
   const [selectedTracks, setSelectedTracks] = useState<Track[]>([]);
   const [debouncedQuery] = useDebouncedValue(query, 750);
+
   const { data: tracks = [] } = api.spotify.searchTracks.useQuery(
     { query: debouncedQuery },
     { enabled: !!debouncedQuery }
   );
+  const { mutate, data: suggestions } = api.openai.getSuggestions.useMutation();
+
   function addTrack(track: Track) {
     setSelectedTracks([...selectedTracks, track]);
   }
+
   return (
     <div>
       <input
@@ -38,6 +42,8 @@ const Home: NextPage = () => {
           <div key={track.id}>{track.name}</div>
         ))}
       </div>
+      <button onClick={() => mutate(selectedTracks)}>Search</button>
+      <div>{suggestions?.comment}</div>
     </div>
   );
 };
