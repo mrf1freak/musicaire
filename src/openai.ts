@@ -19,9 +19,11 @@ export async function chatCompletionReplyFromPrompt(prompt: string) {
   return choices[0]?.message?.content || "";
 }
 
-export async function generateCommentAboutTracks(humanReadableTracks: string) {
+export async function generateCommentAboutTracks(
+  humanReadableTracks: string
+): Promise<string> {
   const prompt = `Based on the user's chosen songs below, tell the user about their taste in music in one line. Make it sound friendly and informative\n\n${humanReadableTracks}`;
-  return await chatCompletionReplyFromPrompt(prompt);
+  return (await chatCompletionReplyFromPrompt(prompt)) || "";
 }
 
 export async function generateTrackSuggestions(

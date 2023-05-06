@@ -1,49 +1,46 @@
 import { type NextPage } from "next";
 import { api } from "~/trpc/api";
 import { useState } from "react";
-import { useDebouncedValue } from "@mantine/hooks";
+import TrackSearch from "~/components/track-search";
+import SelectedTracks from "~/components/selected-tracks";
+import { type Track } from "~/types/track";
+import SuggestionsContainer from "~/components/suggestions-container";
 
 const Home: NextPage = () => {
-  type Track = (typeof tracks)[number];
-
-  const [query, setQuery] = useState("");
   const [selectedTracks, setSelectedTracks] = useState<Track[]>([]);
-  const [debouncedQuery] = useDebouncedValue(query, 750);
 
-  const { data: tracks = [] } = api.spotify.searchTracks.useQuery(
-    { query: debouncedQuery },
-    { enabled: !!debouncedQuery }
-  );
-  const { mutate, data: suggestions } = api.openai.getSuggestions.useMutation();
+  const {
+    mutate,
+    data: suggestions,
+    isLoading: isLoadingSuggestions,
+  } = api.openai.getSuggestions.useMutation();
 
   function addTrack(track: Track) {
+    if (selectedTracks.some(({ id }) => id == track.id)) return;
+
     setSelectedTracks([...selectedTracks, track]);
   }
 
+  function removeTrack(track: Track) {
+    setSelectedTracks(selectedTracks.filter(({ id }) => id != track.id));
+  }
+
   return (
-    <div>
-      <input
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search..."
+    <div className="mt-36 flex w-full flex-col items-center justify-center">
+      <TrackSearch
+        onSelect={addTrack}
+        onSearch={() => mutate(selectedTracks)}
       />
-      {tracks.map((track) => (
-        <button
-          className="block"
-          onClick={() => addTrack(track)}
-          key={track.id}
-        >
-          {track.name}
-        </button>
-      ))}
-      <div>
-        Selected Tracks
-        {selectedTracks.map((track) => (
-          <div key={track.id}>{track.name}</div>
-        ))}
-      </div>
-      <button onClick={() => mutate(selectedTracks)}>Search</button>
-      <div>{suggestions?.comment}</div>
+
+      {isLoadingSuggestions ? (
+        <div>Loading...</div>
+      ) : (
+        <SuggestionsContainer
+          suggestions={suggestions}
+          isLoading={isLoadingSuggestions}
+        />
+      )}
+      <SelectedTracks tracks={selectedTracks} onRemove={removeTrack} />
     </div>
   );
 };

@@ -25,7 +25,11 @@ export const openaiRouter = createTRPCRouter({
       );
       const trackDetails = (
         await Promise.all(trackSuggestions.map(searchTracks))
-      ).map((tracks) => tracks[0]);
+      )
+        .map((tracks) => tracks[0])
+        .filter((track): track is Exclude<typeof track, undefined> =>
+          Boolean(track)
+        );
       return { comment, tracks: trackDetails };
     }),
 });

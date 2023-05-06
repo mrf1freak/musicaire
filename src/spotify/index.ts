@@ -32,6 +32,9 @@ export async function searchTracks(query: string) {
           id: z.string(),
           name: z.string(),
           artists: z.array(z.object({ name: z.string() })),
+          album: z.object({
+            images: z.array(z.object({ url: z.string() })),
+          }),
         })
       ),
     }),

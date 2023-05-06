@@ -9,6 +9,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.14",
     "@mantine/core": "^6.0.9",
     "@mantine/hooks": "^6.0.9",
     "@t3-oss/env-nextjs": "^0.2.1",
@@ -22,7 +23,9 @@
     "openai": "^3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
     "superjson": "1.12.2",
+    "typewriter-effect": "^2.19.0",
     "zod": "^3.21.4"
   },
   "devDependencies": {
