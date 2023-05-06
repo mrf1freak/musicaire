@@ -35,6 +35,7 @@ export async function searchTracks(query: string) {
           album: z.object({
             images: z.array(z.object({ url: z.string() })),
           }),
+          external_urls: z.object({ spotify: z.string() }),
         })
       ),
     }),
