@@ -18,7 +18,7 @@ export default function Suggestions({ comment, tracks }: SuggestionsProps) {
           }}
         />
       </div>
-      <div className="w-[35rem] divide-y">
+      <div className="w-full max-w-2xl divide-y">
         {tracks.map(
           ({
             id,

@@ -21,12 +21,15 @@ const Home: NextPage = () => {
     setSelectedTracks([...selectedTracks, track]);
   }
 
-  function removeTrack(track: Track) {
+  function removeTrack(track: { id: string }) {
     setSelectedTracks(selectedTracks.filter(({ id }) => id != track.id));
   }
 
   return (
-    <div className="mt-36 flex w-full flex-col items-center justify-center">
+    <div className="mt-36 flex w-full max-w-7xl flex-col items-center justify-center px-10">
+      <div className="h-14">
+        <SelectedTracks tracks={selectedTracks} onRemove={removeTrack} />
+      </div>
       <TrackSearch
         onSelect={addTrack}
         onSearch={() => mutate(selectedTracks)}
@@ -40,7 +43,6 @@ const Home: NextPage = () => {
           isLoading={isLoadingSuggestions}
         />
       )}
-      <SelectedTracks tracks={selectedTracks} onRemove={removeTrack} />
     </div>
   );
 };

@@ -19,8 +19,8 @@ export default function TrackSearch({
   );
 
   return (
-    <div className="flex items-center gap-4">
-      <div className="relative w-96 rounded-lg shadow-lg">
+    <div className="flex w-full max-w-xl flex-1 items-center gap-4">
+      <div className="relative flex-1 rounded-lg shadow-lg">
         <Combobox
           value={query}
           onChange={(value) => onSelect(value as unknown as Track)}
