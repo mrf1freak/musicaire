@@ -26,7 +26,7 @@ const Home: NextPage = () => {
   }
 
   return (
-    <div className="mt-36 flex w-full max-w-7xl flex-col items-center justify-center px-10">
+    <div className="mx-auto mt-36 flex w-full max-w-7xl flex-col items-center justify-center px-10">
       <div className="h-14">
         <SelectedTracks tracks={selectedTracks} onRemove={removeTrack} />
       </div>
