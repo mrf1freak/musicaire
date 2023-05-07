@@ -10,7 +10,7 @@ export type SuggestionsProps = {
 export default function Suggestions({ comment, tracks }: SuggestionsProps) {
   return (
     <div className="flex max-w-7xl flex-col items-center gap-4">
-      <div className="my-6 max-w-3xl text-center text-4xl font-medium">
+      <div className="my-6 max-w-5xl text-center text-4xl font-medium">
         <Typewriter
           options={{ delay: 20 }}
           onInit={(tw) => {
