@@ -10,7 +10,7 @@ export type SuggestionsProps = {
 export default function Suggestions({ comment, tracks }: SuggestionsProps) {
   return (
     <div className="flex max-w-7xl flex-col items-center gap-4">
-      <div className="my-6 max-w-5xl text-center text-4xl font-medium">
+      <div className="my-6 max-w-5xl text-center font-serif text-4xl font-medium">
         <Typewriter
           options={{ delay: 20 }}
           onInit={(tw) => {
@@ -31,7 +31,9 @@ export default function Suggestions({ comment, tracks }: SuggestionsProps) {
               <img src={images[0]?.url} className="h-28 w-28" alt={name} />
               <div className="flex flex-1 flex-col gap-4 sm:flex-row">
                 <div className="flex-1">
-                  <div className="text-xl font-medium sm:text-2xl">{name}</div>
+                  <div className="font-serif text-xl font-medium sm:text-2xl">
+                    {name}
+                  </div>
                   <div className="font-medium opacity-50">
                     {artists.map(({ name }) => name).join(", ")}
                   </div>
