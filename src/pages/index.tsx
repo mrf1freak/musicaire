@@ -76,6 +76,7 @@ const Home: NextPage = () => {
         open={openTrackSearch}
         setOpen={setOpenTrackSearch}
         onSelect={addTrack}
+        selectedTracks={selectedTracks}
       />
     </div>
   );
