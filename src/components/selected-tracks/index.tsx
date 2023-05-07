@@ -17,7 +17,7 @@ export default function SelectedTracks({
     <div className="flex gap-6">
       {tracks.map(({ id, name, album: { images } }) => (
         <div
-          className="group relative flex items-center rounded-lg bg-gray-50 shadow"
+          className="group relative flex items-center rounded-lg bg-gray-50 shadow-lg"
           key={id}
         >
           <img
