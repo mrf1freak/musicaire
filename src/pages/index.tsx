@@ -37,7 +37,7 @@ const Home: NextPage = () => {
         />
       </div>
       <button
-        className="my-12 rounded-lg bg-primary px-6 py-2 font-medium text-white shadow transition hover:shadow-lg"
+        className="mb-12 mt-6 rounded-lg bg-primary px-6 py-2 font-medium text-white shadow transition hover:shadow-lg"
         onClick={() => mutate(selectedTracks)}
       >
         Recommend Songs
