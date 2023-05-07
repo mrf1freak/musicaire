@@ -42,7 +42,7 @@ export default function Suggestions({ comment, tracks }: SuggestionsProps) {
                     .join(", ")}`}`}
                   target="_blank"
                 >
-                  <AiOutlineGoogle className="h-4 w-4" />
+                  <AiOutlineGoogle className="h-4 w-4 transition hover:text-primary" />
                 </a>
                 <a
                   href={`https://www.youtube.com/results?search_query=${encodeURI(
@@ -50,10 +50,10 @@ export default function Suggestions({ comment, tracks }: SuggestionsProps) {
                   )}`}
                   target="_blank"
                 >
-                  <BsYoutube className="h-4 w-4" />
+                  <BsYoutube className="h-4 w-4 transition hover:text-primary" />
                 </a>
                 <a href={spotify} target="_blank">
-                  <BsSpotify className="h-4 w-4" />
+                  <BsSpotify className="h-4 w-4 transition hover:text-primary" />
                 </a>
               </div>
             </div>

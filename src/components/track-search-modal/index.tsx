@@ -8,8 +8,8 @@ interface Props extends TrackSearchProps {
 
 export default function TrackSearchModal({ open, setOpen, onSelect }: Props) {
   return (
-    <Dialog open={open} onClose={() => setOpen(false)} className="relative">
-      <div className="fixed inset-0 mt-36 flex w-full justify-center">
+    <Dialog open={open} onClose={() => setOpen(false)} className="">
+      <div className="fixed inset-0 flex w-full justify-center bg-black/20 pt-36">
         <Dialog.Panel className="mx-auto w-full max-w-xl px-6">
           <TrackSearch onSelect={onSelect} />
         </Dialog.Panel>
